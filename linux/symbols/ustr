@@ -1,0 +1,27 @@
+// "U.S. Intl - TR" for XKB.
+//
+// Stock US ANSI layout plus the six Turkish letters on AltGr, mirroring
+// windows/US-TR.klc. Like the Windows layout - and unlike the macOS one - this
+// has no dead keys at all: ` ~ ' " ^ are plain characters.
+//
+// FOUR_LEVEL_ALPHABETIC (rather than FOUR_LEVEL_SEMIALPHABETIC) is the
+// equivalent of the KLC's "Cap = 5" column, so Caps Lock capitalises the AltGr
+// letters too: Caps + AltGr-I gives Idotabove, not idotless.
+
+default partial alphanumeric_keys modifier_keys
+xkb_symbols "basic" {
+
+    include "us(basic)"
+
+    name[Group1]= "English (US, Turkish letters, AltGr)";
+
+    key <AD07> { type[Group1] = "FOUR_LEVEL_ALPHABETIC", [ u, U, udiaeresis, Udiaeresis ] }; // ü Ü
+    key <AD08> { type[Group1] = "FOUR_LEVEL_ALPHABETIC", [ i, I, idotless,   Iabovedot  ] }; // ı İ
+    key <AD09> { type[Group1] = "FOUR_LEVEL_ALPHABETIC", [ o, O, odiaeresis, Odiaeresis ] }; // ö Ö
+    key <AC02> { type[Group1] = "FOUR_LEVEL_ALPHABETIC", [ s, S, scedilla,   Scedilla   ] }; // ş Ş
+    key <AC05> { type[Group1] = "FOUR_LEVEL_ALPHABETIC", [ g, G, gbreve,     Gbreve     ] }; // ğ Ğ
+    key <AB03> { type[Group1] = "FOUR_LEVEL_ALPHABETIC", [ c, C, ccedilla,   Ccedilla   ] }; // ç Ç
+
+    // Right Alt only - left Alt stays a plain Alt for application shortcuts.
+    include "level3(ralt_switch)"
+};
